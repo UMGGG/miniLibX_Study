@@ -6,10 +6,10 @@
 #    By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 16:01:20 by jaeyjeon          #+#    #+#              #
-#    Updated: 2022/05/26 16:31:50 by jaeyjeon         ###   ########.fr        #
+#    Updated: 2022/05/26 17:20:43 by jaeyjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 all:
-	gcc -Lmlx -lmlx -framework OpenGL -framework AppKit test.c
+	gcc -Lmlx -lmlx -framework OpenGL -framework AppKit getKey.c
 	./a.out
