@@ -6,10 +6,10 @@
 #    By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/26 16:01:20 by jaeyjeon          #+#    #+#              #
-#    Updated: 2022/05/26 18:31:54 by jaeyjeon         ###   ########.fr        #
+#    Updated: 2022/05/26 18:46:31 by jaeyjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 all:
-	gcc -Lmlx -lmlx -framework OpenGL -framework AppKit PopupImage.c
+	gcc -Lmlx -lmlx -framework OpenGL -framework AppKit DrawMap.c
 	./a.out

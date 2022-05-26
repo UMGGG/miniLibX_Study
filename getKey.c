@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 15:30:29 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/05/26 18:30:07 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/05/26 18:49:33 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	param_init(t_param *param)
 
 int	key_press(int keycode, t_param *param)
 {
-	if (keycode == KEY_W)//Action when W key pressed
+	if (keycode == KEY_W)
 		param->x++;
-	else if (keycode == KEY_S) //Action when S key pressed
+	else if (keycode == KEY_S)
 		param->x--;
-	else if (keycode == KEY_ESC) //Quit the program when ESC key pressed
+	else if (keycode == KEY_ESC)
 		exit(0);
 	printf("x: %d\n", param->x);
 	return (0);
