@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:41:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/05/26 22:26:35 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/05/28 15:14:13 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(void)
 	yloc = 0;
 	i = 0;
 	mlx = mlx_init();
-	win = mlx_new_window(mlx, 1000, 1000, "putImage");
+	win = mlx_new_window(mlx, 500, 500, "DrawMap");
 	ground.img = mlx_xpm_file_to_image(mlx, "imgs/ground.xpm", &ground.width, &ground.height);
 	wall.img = mlx_xpm_file_to_image(mlx, "imgs/rock.xpm", &wall.width, &wall.height);
 	while (i < 15)
