@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:35:34 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/05/31 18:55:53 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/05/31 22:05:33 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,19 @@ typedef struct s_param
 {
 	void	*mlx;
 	void	*win;
-	void	*character;
-	void	*ground;
-	void	*wall;
+	void	*c;
+	void	*g;
+	void	*w;
 	size_t	fd;
 	int		x;
 	int		y;
-	int		width;
-	int		height;
+	int		wi;
+	int		he;
 	int		win_width;
 	int		win_height;
 }	t_param;
+
+int	drawmap(t_param *par);
+int	checkmap_length(t_param *par);
 
 #endif

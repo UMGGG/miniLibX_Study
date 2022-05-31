@@ -6,75 +6,70 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:41:42 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/05/31 18:57:08 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/05/31 22:28:28 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	checkmap_length(t_param *param)
+int	checkmap_length(t_param *par)
 {
 	char	*str;
-	int		check_width;
+	int		check_p;
 
-	str = get_next_line(param->fd);
+	check_p = 0;
+	str = get_next_line(par->fd);
 	if (str == NULL)
-		return (0);
-	while (str != NULL)
 	{
-		param->win_height++;
-		param->win_width = ft_strlen(str);
+		printf("널값 받아짐");
+		return (0);
+	}
+	par->win_width = ft_strlen(str);
+	while (str != NULL && *str != '\n')
+	{
+		par->win_height++;
+		if (ft_strlen(str) != (size_t)par->win_width)
+		{
+			printf("길이 다름");
+			return (0);
+		}
 		while (*str != '\0')
 		{
-			if (*str == '1')
-
-			else if (*str == '0')
-
+			if (*str == 'P')
+				check_p++;
 			str++;
-			param->x += param->width;
 		}
-		str = get_next_line(param->fd);
+		str = get_next_line(par->fd);
 	}
+	return (1);
 }
 
-int	drawmap(t_param *param)
+int	drawmap(t_param *par)
 {
 	char	*str;
+	int		x;
+	int		y;
 
-	mlx_clear_window(param->mlx, param->win);
-	str = get_next_line(param->fd);
+	x = 0;
+	y = 0;
+	par->fd = open("maps/map.ber", O_RDONLY);
+	str = get_next_line(par->fd);
 	while (str != NULL)
 	{
 		while (*str != '\0')
 		{
 			if (*str == '0')
-				mlx_put_image_to_window(param->mlx, param->win, param->ground, param->x, param->y);
+				mlx_put_image_to_window(\
+				par->mlx, par->win, par->g, x, y);
 			else if (*str == '1')
-				mlx_put_image_to_window(param->mlx, param->win, param->wall, param->x, param->y);
+				mlx_put_image_to_window(\
+				par->mlx, par->win, par->w, x, y);
 			str++;
-			param->x += param->width;
+			x += par->wi;
 		}
-		str = get_next_line(param->fd);
-		param->x = 0;
-		param->y += param->height;
+		str = get_next_line(par->fd);
+		x = 0;
+		y += par->he;
 	}
-	return (0);
-}
-
-int	main(void)
-{
-	t_param	param;
-
-	param.mlx = mlx_init();
-	param.ground = mlx_xpm_file_to_image(param.mlx, "imgs/ground.xpm", &param.width, &param.height);
-	param.wall = mlx_xpm_file_to_image(param.mlx, "imgs/rock.xpm", &param.width, &param.height);
-	param.win = mlx_new_window(param.mlx, 1000, 1000, "DrawMap");
-	param.x = 0;
-	param.y = 0;
-	param.fd = open("maps/map.ber", O_RDONLY);
-	param.win_width = 0;
-	param.win_height = 0;
-	drawmap(&param);
-	mlx_loop(param.mlx);
 	return (0);
 }
