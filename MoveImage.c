@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:14:24 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/05/31 17:02:09 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/05/31 17:48:30 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef struct s_param
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
+	void	*character;
+	void	*ground;
 	int		x;
 	int		y;
 	int		width;
@@ -48,10 +49,30 @@ int	key_press(int keycode, t_param *param)
 	return (0);
 }
 
+void	drawmap(t_param *loc)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i <= 11)
+	{
+		while (j <= 11)
+		{
+			mlx_put_image_to_window(loc->mlx, loc->win, loc->ground, 48 * i, 48 * j);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
 int	draw(t_param *loc)
 {
 	mlx_clear_window(loc->mlx, loc->win);
-	mlx_put_image_to_window(loc->mlx, loc->win, loc->img, loc->x, loc->y);
+	drawmap(loc);
+	mlx_put_image_to_window(loc->mlx, loc->win, loc->character, loc->x, loc->y);
 	return (0);
 }
 
@@ -69,9 +90,10 @@ int	main(void)
 	loc.x = 0;
 	loc.y = 0;
 	loc.mlx = mlx_init();
-	loc.img = mlx_xpm_file_to_image(loc.mlx, "imgs/ground.xpm", &loc.width, &loc.height);
+	loc.character = mlx_xpm_file_to_image(loc.mlx, "imgs/character.xpm", &loc.width, &loc.height);
+	loc.ground = mlx_xpm_file_to_image(loc.mlx, "imgs/ground.xpm", &loc.width, &loc.height);
 	loc.win = mlx_new_window(loc.mlx, loc.width * 11, loc.height * 11, "MoveImage");
-	mlx_put_image_to_window(loc.mlx, loc.win, loc.img, loc.x, loc.y);
+	draw(&loc);
 	mlx_key_hook(loc.win, &key_press, &loc);
 	mlx_hook(loc.win, PRESS_RED_BUTTON, 0, &redbut, &loc);
 	mlx_loop_hook(loc.mlx, &draw, &loc);
