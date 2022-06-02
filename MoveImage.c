@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 15:14:24 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/05/31 22:29:43 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:26:32 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,28 @@
 int	key_press(int keycode, t_param *param)
 {
 	if (keycode == KEY_W && param->y != 0)
+	{
 		param->y -= param->he;
+		param->move++;
+	}
 	if (keycode == KEY_S && param->y != 480)
+	{
 		param->y += param->he;
+		param->move++;
+	}
 	else if (keycode == KEY_A && param->x != 0)
+	{
 		param->x -= param->wi;
+		param->move++;
+	}
 	else if (keycode == KEY_D && param->x != 480)
+	{
 		param->x += param->wi;
+		param->move++;
+	}
 	else if (keycode == KEY_ESC)
 		exit(0);
-	printf("y: %d x: %d\n", param->y, param->x);
+	printf("move: %d\n", param->move);
 	return (0);
 }
 
@@ -59,6 +71,7 @@ int	main(void)
 	par.y = 0;
 	par.win_width = 0;
 	par.win_height = 0;
+	par.move = 0;
 	par.fd = open("maps/map.ber", O_RDONLY);
 	if (checkmap_length(&par))
 		draw(&par);

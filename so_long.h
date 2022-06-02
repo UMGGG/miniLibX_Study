@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 18:35:34 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/05/31 22:05:33 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:25:38 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "mlx/mlx.h"
 # include "inc/42Get_Next_Line/get_next_line.h"
 
-# define KEY_ESC				53
+# define KEY_ESC			53
 # define KEY_W				13
 # define KEY_S				1
 # define KEY_A				0
@@ -39,6 +39,7 @@ typedef struct s_param
 	int		he;
 	int		win_width;
 	int		win_height;
+	int		move;
 }	t_param;
 
 int	drawmap(t_param *par);
